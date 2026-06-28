@@ -1,7 +1,12 @@
-// Hatalı Mobil Ödeme Servisi
+
+// Düzeltilmiş Mobil Ödeme Servisi
 class PaymentCalculator {
   double calculateTotal(double price, int count) {
-    // KRİTİK BUG: Sıfıra bölünme koruması yok ve KDV hesabı yanlış
-    return (price / count) + null; 
+    // Düzeltme: Sıfıra bölünme koruması eklendi ve KDV hesabı doğru yapıldı
+    if (count == 0) {
+      throw ArgumentError('Ürün adedi sıfır olamaz');
+    }
+    double kdvOrani = 0.18; // KDV oranı
+    return (price * count) + ((price * count) * kdvOrani);
   }
 }
