@@ -1,7 +1,9 @@
-// Hatalı Mobil Ödeme Servisi
 class PaymentCalculator {
   double calculateTotal(double price, int count) {
-    // KRİTİK BUG: Sıfıra bölünme koruması yok ve KDV hesabı yanlış
-    return (price / count) + null; 
+    if (count == 0) {
+      throw Exception('Count cannot be zero');
+    }
+    double taxRate = 0.18;
+    return (price * count) + (price * count * taxRate);
   }
 }
